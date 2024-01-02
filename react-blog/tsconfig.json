@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
+    "baseUrl": "src" /*절대경로를 기준으로 하는 기본디렉터리 지정*/,
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +17,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "paths": {
+    /*모듈이름과 해당 모듈파일의 경로를 맵핑하는 설정*/ "pages/*": ["pages/*"],
+    "components/*": ["components/*"]
+  }
 }
