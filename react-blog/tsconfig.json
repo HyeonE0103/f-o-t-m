@@ -20,6 +20,8 @@
   "include": ["src"],
   "paths": {
     /*모듈이름과 해당 모듈파일의 경로를 맵핑하는 설정*/ "pages/*": ["pages/*"],
-    "components/*": ["components/*"]
+    "components/*": ["components/*"],
+    "firebaseApp/*": ["firebaseApp/*"],
+    "context/*": ["context/*"]
   }
 }
