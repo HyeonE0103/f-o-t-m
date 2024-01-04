@@ -13,10 +13,11 @@ code {
 }
 
 /* header */
+
 header {
   display: flex;
   justify-content: space-between;
-  /* flex-direction: row-reverse; */ /* 해당 flex 위치를 오른쪽으로*/
+  /* flex-direction: row-reverse; */
   border-bottom: 1px solid #f2f2f2;
   padding: 10px 40px;
   min-height: 40px;
@@ -31,7 +32,7 @@ header .header__logo {
 
 header a {
   margin: 0px 10px;
-  text-decoration: none; /* 링크에 기본 스타일 제거 */
+  text-decoration: none;
   color: gray;
 }
 
@@ -162,6 +163,14 @@ footer a:hover {
   color: gray;
 }
 
+.post__no-post {
+  padding: 24px;
+  text-align: center;
+  color: gray;
+  border: 1px solid #f2f2f2;
+  border-radius: 20px;
+}
+
 /* post detail */
 
 .post__detail .post__title {
@@ -182,6 +191,11 @@ footer a:hover {
 
 .post__detail .post__text {
   padding: 20px 0px;
+}
+
+.post__text--pre-wrap {
+  /* 한글은 상관없지만 숫자나 영어의 경우 범위를 벗어날수 있어서 pre-wrap으로 줄바꿈과 영역을 벗어나지 않도록 함 */
+  white-space: pre-wrap;
 }
 
 /* profile */
@@ -224,6 +238,8 @@ footer a:hover {
 .profile__logout {
   color: gray;
   font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .profile__logout:hover,
@@ -232,6 +248,7 @@ footer a:hover {
 }
 
 /* carousel */
+
 .carousel {
   margin: 0 auto;
   max-width: 980px;
@@ -338,7 +355,6 @@ ul.carousel__slides input {
   background-color: #fff;
   opacity: 0.5;
   margin: 10px;
-  cursor: pointer;
 }
 
 input:checked + .carousel__slide-container .carousel__slide-img {
@@ -418,4 +434,48 @@ input:checked + .carousel__slide-container .nav label {
 .form .form__btn--submit:hover,
 .form .form__btn--submit:focus {
   background-color: #1945a4;
+}
+
+/* login form */
+
+.form--lg {
+  min-height: 70vh;
+  margin-top: 10vh;
+}
+
+.form__title {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.form__link {
+  margin-left: 10px;
+  text-decoration: none;
+  color: gray;
+}
+
+.form__link:hover,
+.form__link:focus {
+  color: black;
+}
+
+.form__error {
+  color: red;
+}
+
+/* loader */
+
+.loader {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 5px solid #2563eb;
+  border-radius: 50%;
+  z-index: 9999;
+  animation: rotation 1s linear infinite;
 }
