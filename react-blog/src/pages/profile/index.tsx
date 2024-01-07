@@ -5,7 +5,7 @@ const ProfilePage = () => {
   return (
     <>
       <Profile />
-      <PostList hasNavigation={false} />
+      <PostList hasNavigation={false} defaultTab="my" />
     </>
   );
 };
