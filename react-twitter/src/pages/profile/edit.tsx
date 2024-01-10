@@ -14,6 +14,7 @@ import { storage } from "firebaseApp";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import PostHeader from "components/posts/Header";
+import useTranslation from "hooks/useTranslation";
 
 const STORAGE_DOWNLOAD_URL_STR = "https://firebasestorage.googleapis.com";
 
@@ -22,6 +23,7 @@ const ProfileEdit = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const t = useTranslation();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -120,7 +122,7 @@ const ProfileEdit = () => {
             type="text"
             name="displayName"
             className="post-form__input"
-            placeholder="이름"
+            placeholder={t("NAME_PLACEHOLDER")}
             onChange={onChange}
             value={displayName}
           />
@@ -132,7 +134,7 @@ const ProfileEdit = () => {
                 onClick={handleDeleteImage}
                 className="post-form__clear-btn"
               >
-                삭제
+                {t("BUTTON_DELETE")}
               </button>
             </div>
           )}
@@ -155,7 +157,7 @@ const ProfileEdit = () => {
             />
             <input
               type="submit"
-              value="프로필 수정"
+              value={t("BUTTON_EDIT_PROFILE")}
               className="post-form__submit-btn"
             />
           </div>

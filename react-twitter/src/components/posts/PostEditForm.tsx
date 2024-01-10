@@ -14,6 +14,7 @@ import {
 } from "firebase/storage";
 import AuthContext from "context/AuthContext";
 import PostHeader from "./Header";
+import useTranslation from "hooks/useTranslation";
 
 const PostEditForm = () => {
   const params = useParams();
@@ -25,6 +26,7 @@ const PostEditForm = () => {
   const [imageFile, setImageFile] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const t = useTranslation();
 
   const handleDeleteImage = () => {
     setImageFile(null);
@@ -139,7 +141,7 @@ const PostEditForm = () => {
           required
           name="content"
           id="content"
-          placeholder="What is happening?"
+          placeholder={t("POST_PLACEHOLDER")}
           onChange={onChange}
           value={content}
         />
@@ -159,7 +161,7 @@ const PostEditForm = () => {
             className="post-form__input"
             name="hashtag"
             id="hashtag"
-            placeholder="해시태그 + 스페이스바 입력"
+            placeholder={t("POST_HASHTAG")}
             onChange={onChangeHashTag}
             onKeyUp={handleKeyUp}
             value={hashTag}
@@ -198,7 +200,7 @@ const PostEditForm = () => {
           </div>
           <input
             type="submit"
-            value="수정"
+            value={t("BUTTON_EDIT")}
             className="post-form__submit-btn"
             disabled={isSubmitting}
           />

@@ -1,3 +1,4 @@
+import { languageState } from "atom";
 import PostBox from "components/posts/PostBox";
 import AuthContext from "context/AuthContext";
 import {
@@ -8,9 +9,11 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "firebaseApp";
+import useTranslation from "hooks/useTranslation";
 import { PostProps } from "pages/home";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 
 const PROFILE_DEFAULT_URL = "/logo192.png";
 //public은 경로 설정없이 절대경로로 알아서 잘 찾아가는군아!!
@@ -20,8 +23,16 @@ const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<TabType>("my");
   const [myPosts, setMyPosts] = useState<PostProps[]>([]);
   const [likePosts, setLikePosts] = useState<PostProps[]>([]);
+  const [language, setLanguage] = useRecoilState(languageState);
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const t = useTranslation();
+
+  const onClickLanguage = () => {
+    const lan = language === "ko" ? "en" : "ko";
+    setLanguage(lan);
+    localStorage.setItem("language", lan);
+  };
 
   useEffect(() => {
     if (user) {
@@ -59,7 +70,7 @@ const ProfilePage = () => {
   return (
     <div className="home">
       <div className="home__top">
-        <div className="home__title">Profile</div>
+        <div className="home__title">{t("MENU_PROFILE")}</div>
         <div className="profile">
           <img
             src={user?.photoURL || PROFILE_DEFAULT_URL}
@@ -68,36 +79,43 @@ const ProfilePage = () => {
             width={100}
             height={100}
           />
-          <button
-            type="button"
-            className="profile__btn"
-            onClick={() => navigate("/profile/edit")}
-          >
-            프로필 수정
-          </button>
+          <div className="profile__flex">
+            <button
+              type="button"
+              className="profile__btn"
+              onClick={() => navigate("/profile/edit")}
+            >
+              {t("BUTTON_EDIT_PROFILE")}
+            </button>
+            <button
+              type="button"
+              className="profile__btn--language"
+              onClick={onClickLanguage}
+            >
+              {language === "ko" ? "한국어" : "English"}
+            </button>
+          </div>
         </div>
         <div className="profile__text">
-          <div className="profile__name">{user?.displayName || "사용자님"}</div>
+          <div className="profile__name">
+            {user?.displayName || t("PROFILE_NAME")}
+          </div>
           <div className="profile__email">{user?.email}</div>
         </div>
         <div className="home__tabs">
           <div
             className={`home__tab ${activeTab === "my" && "home__tab--active"}`}
-            onClick={() => {
-              setActiveTab("my");
-            }}
+            onClick={() => setActiveTab("my")}
           >
-            For You
+            {t("TAB_MY")}
           </div>
           <div
             className={`home__tab ${
               activeTab === "like" && "home__tab--active"
             }`}
-            onClick={() => {
-              setActiveTab("like");
-            }}
+            onClick={() => setActiveTab("like")}
           >
-            Likes
+            {t("TAB_LIKES")}
           </div>
         </div>
 
@@ -107,7 +125,7 @@ const ProfilePage = () => {
               myPosts?.map((post) => <PostBox post={post} key={post.id} />)
             ) : (
               <div className="post__no-posts">
-                <div className="post__text">게시글이 없습니다.</div>
+                <div className="post__text">{t("NO_POSTS")}</div>
               </div>
             )}
           </div>
@@ -118,7 +136,7 @@ const ProfilePage = () => {
               likePosts?.map((post) => <PostBox post={post} key={post.id} />)
             ) : (
               <div className="post__no-posts">
-                <div className="post__text">게시글이 없습니다.</div>
+                <div className="post__text">{t("NO_POSTS")}</div>
               </div>
             )}
           </div>

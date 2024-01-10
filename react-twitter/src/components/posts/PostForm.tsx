@@ -2,6 +2,7 @@ import AuthContext from "context/AuthContext";
 import { addDoc, collection } from "firebase/firestore";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { db, storage } from "firebaseApp";
+import useTranslation from "hooks/useTranslation";
 import { useContext, useState } from "react";
 import { FiImage } from "react-icons/fi";
 import { toast } from "react-toastify";
@@ -14,6 +15,7 @@ const PostForm = () => {
   const [imageFile, setImageFile] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false); //업로드 ing인지 확인
   const { user } = useContext(AuthContext);
+  const t = useTranslation();
 
   const handleFileUpload = (e: any) => {
     const {
@@ -121,18 +123,16 @@ const PostForm = () => {
         required
         name="content"
         id="content"
-        placeholder="What is happening?"
+        placeholder={t("POST_PLACEHOLDER")}
         onChange={onChange}
         value={content}
       />
       <div className="post-form__hashtags">
         <span className="post-form__hashtags-outputs">
-          {/* 태그가 있는 경우에만 보여줄것임 */}
           {tags?.map((tag, index) => (
             <span
               className="post-form__hashtags-tag"
               key={index}
-              // 태그를 눌렀을때 삭제
               onClick={() => removeTag(tag)}
             >
               #{tag}
@@ -143,10 +143,9 @@ const PostForm = () => {
           className="post-form__input"
           name="hashtag"
           id="hashtag"
-          placeholder="해시태그 + 스페이스바 입력"
+          placeholder={t("POST_HASHTAG")}
           onChange={onChangeHashTag}
           onKeyUp={handleKeyUp}
-          // onKeyUp: 키를 눌렀을때 스페이스 바인 경우 입력을 할수 있도록 함
           value={hashTag}
         />
       </div>
@@ -163,23 +162,22 @@ const PostForm = () => {
             onChange={handleFileUpload}
             className="hidden"
           />
-          {imageFile && ( //이미지가 있을 경우
+          {imageFile && (
             <div className="post-form__attachment">
               <img src={imageFile} alt="attachment" width={100} height={100} />
-              {/* src에 인코딩된 이미지를 넣음 */}
               <button
                 className="post-form__clear-btn"
                 type="button"
                 onClick={handleDeleteImage}
               >
-                Clear
+                {t("BUTTON_DELETE")}
               </button>
             </div>
           )}
         </div>
         <input
           type="submit"
-          value="Tweet"
+          value={t("BUTTON_TWEET")}
           className="post-form__submit-btn"
           disabled={isSubmitting}
         />
