@@ -1,18 +1,4 @@
-$background: #1e293b;
-$activeBg: #3c495f5f;
-$white: #ffffff;
-$backgroundLight: #263340;
-$border: #708090;
-$primaryColor: #60a5fa;
-$activeBorder: #3b82f6;
-$grayText: #9ca3af;
-$danger: #dc2626;
-$dangerDark: #dc26268e;
-$gray: #6b7280;
-$grayDark: #4c515b;
-
-$font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+@import "./_utils.scss";
 
 // 전체 레이아웃
 body {
@@ -45,6 +31,10 @@ body {
   border: none;
   cursor: pointer;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 .transparent {
@@ -75,8 +65,12 @@ body {
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     background-color: transparent;
+
+    &--text {
+      background-color: transparent;
+    }
 
     button {
       border: none;
@@ -88,7 +82,56 @@ body {
       background-color: transparent;
       padding: 16px 0px;
       backdrop-filter: blur(10px);
+
+      svg {
+        backdrop-filter: blur(10px);
+        background-color: transparent;
+      }
     }
+  }
+}
+
+@include xsMobile { //반응형 구현
+  .footer {
+    display: none;
+  }
+
+  .layout {
+    border: none;
+  }
+}
+
+@include mobile {
+  .footer {
+    &__grid {
+      &--text {
+        display: none;
+      }
+      button {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .layout {
+    border: none;
+  }
+}
+
+@include tablet {
+  .footer {
+    &__grid {
+      &--text {
+        display: none;
+      }
+      button {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .layout {
+    border: none;
   }
 }
 
@@ -315,6 +358,36 @@ body {
     display: flex;
     gap: 4px;
     align-items: center;
+
+    &--between {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__follow-btn {
+    @extend .button;
+    background-color: $white;
+    color: $activeBorder;
+
+    &:hover,
+    &:focus {
+      background-color: $activeBorder;
+      color: $white;
+    }
+  }
+
+  &__following-btn {
+    @extend .button;
+    background-color: $activeBorder;
+    color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $white;
+      color: $activeBorder;
+    }
   }
 
   &__email,
@@ -502,6 +575,11 @@ body {
   justify-content: space-between;
   align-items: center;
 
+  &__flex {
+    display: flex;
+    gap: 8px;
+  }
+
   &__image {
     border-radius: 50%;
     width: 100px;
@@ -515,6 +593,16 @@ body {
     &:hover,
     &:focus {
       background-color: $activeBorder;
+    }
+
+    &--language {
+      @extend .button;
+      background-color: $gray;
+
+      &:hover,
+      &:focus {
+        background-color: $grayDark;
+      }
     }
   }
 
