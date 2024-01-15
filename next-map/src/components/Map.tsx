@@ -1,20 +1,23 @@
 /*global kakao*/
+import { Dispatch, SetStateAction, useRef } from "react";
 import Script from "next/script";
-import { useRef } from "react";
-import * as stores from "@/data/store_data.json";
 
 declare global {
   interface Window {
-    //Window객체에서 kakao를 인식할수 있도록 type선언
     kakao: any;
   }
 }
 
-const DEFAULT_LAT = 37.534429967212446; //위도
-const DEFAULT_LNG = 126.83634640358318; //경도
+const DEFAULT_LAT = 37.497625203;
+const DEFAULT_LNG = 127.03088379;
 
-export default function Map() {
+interface MapProps {
+  setMap: Dispatch<SetStateAction<any>>; //지도는 type정의를 안했으므로 any
+}
+
+export default function Map({ setMap }: MapProps) {
   const mapRef = useRef<HTMLDivElement | null>(null);
+
   const loadKakaoMap = () => {
     window.kakao.maps.load(() => {
       /*v3 스크립트를 동적으로 로드하기 위해 사용함
@@ -24,27 +27,12 @@ export default function Map() {
       v3 로딩 스크립트 주소에 파라메터로 autoload=false를 지정해주어야 함*/
       const mapContainer = mapRef.current;
       const mapOption = {
-        center: new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LAT),
+        center: new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LNG),
         level: 3,
       };
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-      //식당 데이터 마커 띄우기
-      stores?.["DATA"]?.map((store) => {
-        //마커가 표시될 위치
-        var markerPosition = new window.kakao.maps.LatLng(
-          store?.y_dnts,
-          store?.x_cnts
-        );
-
-        //마커 생성
-        var marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-        });
-
-        //마커가 지도 위에 표시되도록 설정
-        marker.setMap(map);
-      });
+      setMap(map);
     });
   };
   return (
