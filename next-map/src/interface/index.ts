@@ -1,5 +1,4 @@
 export interface StoreType {
-  //prisma 스키마에 null값이 들어갈수 있도록 작성했기 때문에 
   id: number;
   phone?: string | null;
   address?: string | null;
@@ -16,4 +15,15 @@ export interface StoreApiResponse {
   totalPage?: number;
   totalCount?: number;
   page?: number;
+}
+
+export interface LocationType {
+  lat?: string | null;
+  lng?: string | null;
+  zoom?: number;
+}
+
+export interface SearchType {
+  q?: string;
+  district?: string;
 }

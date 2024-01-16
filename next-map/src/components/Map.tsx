@@ -1,6 +1,8 @@
 /*global kakao*/
 import { Dispatch, SetStateAction, useRef } from "react";
 import Script from "next/script";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { locationState, mapState } from "@/atom";
 
 declare global {
   interface Window {
@@ -13,14 +15,15 @@ const DEFAULT_LNG = 127.03088379;
 const DEFAULT_ZOOM = 3;
 
 interface MapProps {
-  setMap: Dispatch<SetStateAction<any>>; //지도는 type정의를 안했으므로 any
   lat?: string | null;
   lng?: string | null;
   zoom?: number;
 }
 
-export default function Map({ setMap, lat, lng, zoom }: MapProps) {
+export default function Map({ lat, lng, zoom }: MapProps) {
+  const setMap = useSetRecoilState(mapState);
   const mapRef = useRef<HTMLDivElement | null>(null);
+  const location = useRecoilValue(locationState);
 
   const loadKakaoMap = () => {
     window.kakao.maps.load(() => {
@@ -32,10 +35,10 @@ export default function Map({ setMap, lat, lng, zoom }: MapProps) {
       const mapContainer = mapRef.current;
       const mapOption = {
         center: new window.kakao.maps.LatLng(
-          lat ?? DEFAULT_LAT, //lat값이 있으면 lat을 먼저 사용하고 없으면 DEFAULT값 사용
-          lng ?? DEFAULT_LNG
+          lat ?? location.lat,
+          lng ?? location.lng
         ),
-        level: zoom ?? DEFAULT_ZOOM,
+        level: zoom ?? location.zoom,
       };
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
