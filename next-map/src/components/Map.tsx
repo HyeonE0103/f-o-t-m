@@ -10,12 +10,16 @@ declare global {
 
 const DEFAULT_LAT = 37.497625203;
 const DEFAULT_LNG = 127.03088379;
+const DEFAULT_ZOOM = 3;
 
 interface MapProps {
   setMap: Dispatch<SetStateAction<any>>; //지도는 type정의를 안했으므로 any
+  lat?: string | null;
+  lng?: string | null;
+  zoom?: number;
 }
 
-export default function Map({ setMap }: MapProps) {
+export default function Map({ setMap, lat, lng, zoom }: MapProps) {
   const mapRef = useRef<HTMLDivElement | null>(null);
 
   const loadKakaoMap = () => {
@@ -27,8 +31,11 @@ export default function Map({ setMap }: MapProps) {
       v3 로딩 스크립트 주소에 파라메터로 autoload=false를 지정해주어야 함*/
       const mapContainer = mapRef.current;
       const mapOption = {
-        center: new window.kakao.maps.LatLng(DEFAULT_LAT, DEFAULT_LNG),
-        level: 3,
+        center: new window.kakao.maps.LatLng(
+          lat ?? DEFAULT_LAT, //lat값이 있으면 lat을 먼저 사용하고 없으면 DEFAULT값 사용
+          lng ?? DEFAULT_LNG
+        ),
+        level: zoom ?? DEFAULT_ZOOM,
       };
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
