@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import prisma from "@/db";
 
@@ -6,7 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import NaverProvider from "next-auth/providers/naver";
 import KakaoProvider from "next-auth/providers/kakao";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   session: {
     //해당 옵션이 세션관리 방법중 하나로 jwt기반의 세션을 사용한다고 명시
     strategy: "jwt" as const, //기본값인 jwt를 명시, type에러를 해결하기이해 const명시
@@ -32,6 +32,22 @@ export const authOptions = {
   ],
   pages: {
     signIn: "/users/login",
+  },
+  callbacks: {
+    session: ({ session, token }) => ({
+      ...session, //기존의 session정보
+      user: {
+        ...session.user,
+        id: token.sub, //기존 정보에 id값을 추가하는 값은 token.sub
+      },
+    }),
+    jwt: async ({ user, token }) => {
+      if (user) { //로그인 한 경우 
+        //user가 있는경우 token.sub를 user.id로 두겠다고 정의
+        token.sub = user.id;
+      }
+      return token;
+    },
   },
 };
 
