@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
+"use client";
+
+import React, { useCallback, useEffect, useRef } from "react";
 import axios from "axios";
 import { useInfiniteQuery } from "react-query";
 import Loading from "@/components/Loading";
@@ -7,13 +8,11 @@ import Loader from "@/components/Loader";
 import { StoreType } from "@/interface";
 import useIntersectionObserver from "@/hooks/useIntersectionObserver";
 import SearchFilter from "@/components/SearchFilter";
-import { useRouter } from "next/router";
 import { useRecoilValue } from "recoil";
 import { searchState } from "@/atom";
 import StoreList from "@/components/StoreList";
 
 export default function StoreListPage() {
-  const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const pageRef = useIntersectionObserver(ref, {});
   const isPageEnd = !!pageRef?.isIntersecting; //화면의 마지막 게시물까지 왔는지
@@ -100,12 +99,4 @@ export default function StoreListPage() {
       <div className="w-full touch-none h-10 mb-10" ref={ref} />
     </div>
   );
-}
-
-export async function getServerSideProps() {
-  const stores = await axios(`${process.env.NEXT_PUBLIC_API_URL}/api/stores`);
-
-  return {
-    props: { stores: stores.data },
-  };
 }

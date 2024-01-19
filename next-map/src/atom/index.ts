@@ -5,7 +5,8 @@ const DEFAULT_LAT = "37.497625203";
 const DEFAULT_LNG = "127.03088379";
 const DEFAULT_ZOOM = 3;
 
-export const mapState = atom({
+export const mapState = atom<any>({
+  //카카오 api 사용으로 타입을 하나하나 지정해주기는 어려워서 any사용
   key: "map",
   default: null,
   dangerouslyAllowMutability: true,

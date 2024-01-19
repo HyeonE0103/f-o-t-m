@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { StoreType } from "@/interface";
@@ -11,9 +13,14 @@ import { toast } from "react-toastify";
 import Like from "@/components/Like";
 import Comments from "@/components/comments";
 
-export default function StorePage() {
+interface ParamsProps {
+  params: { id: string }; //게시물 id값
+  searchParams: { page: string }; //param page값
+}
+
+export default function StorePage({ params, searchParams }: ParamsProps) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = params.id;
   const { status } = useSession(); //사용자가 로그인했을때만 접근할 수 있도록함
 
   const fetchStore = async () => {
@@ -166,7 +173,7 @@ export default function StorePage() {
           <Marker store={store} />
         </div>
       )}
-      {store?.id && <Comments storeId={store?.id} />}
+      {store?.id && <Comments storeId={store?.id} page={searchParams.page} />}
     </>
   );
 }

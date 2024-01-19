@@ -1,3 +1,5 @@
+"use client";
+
 /*global kakao*/
 import { Dispatch, SetStateAction, useRef } from "react";
 import Script from "next/script";

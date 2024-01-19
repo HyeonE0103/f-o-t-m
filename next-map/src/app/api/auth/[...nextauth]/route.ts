@@ -42,7 +42,8 @@ export const authOptions: NextAuthOptions = {
       },
     }),
     jwt: async ({ user, token }) => {
-      if (user) { //로그인 한 경우 
+      if (user) {
+        //로그인 한 경우
         //user가 있는경우 token.sub를 user.id로 두겠다고 정의
         token.sub = user.id;
       }
@@ -51,4 +52,5 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-export default NextAuth(authOptions);
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST };
