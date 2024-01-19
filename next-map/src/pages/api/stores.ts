@@ -2,6 +2,8 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { StoreApiResponse, StoreType } from "@/interface";
 import prisma from "@/db";
 import axios from "axios";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth/[...nextauth]";
 
 interface Responsetype {
   page?: string;
@@ -16,6 +18,9 @@ export default async function handler(
   res: NextApiResponse<StoreApiResponse | StoreType[] | StoreType | null> //페이지네이션, 전체데이터, 한개의 데이터
 ) {
   const { page = "", limit = "", q, district, id }: Responsetype = req.query;
+  const session = await getServerSession(req, res, authOptions);
+  //getServerSession을 req, res, authOptions통해서 session을 생성할 수 있음
+
   if (req.method === "POST") {
     //데이터 생성 처리
     const formData = req.body;
@@ -103,6 +108,15 @@ export default async function handler(
         orderBy: { id: "asc" }, //오름차순 정리
         where: {
           id: id ? parseInt(id) : {}, //id가 있으면 해당 id에 게시물을 가져오고 아니면 where문 무시
+        },
+        include: {
+          //가게 상세페이지 데이터에서 현재 로그인된 사용자가 있으면 로그인된 사용자와 매칭이 되는 가게 찜 데이터를 가져옴
+          //include를 해서 store를 가져올때 store에 포함이 되어있는 like데이터도 같이 포함해서 가져오라는 의미
+
+          likes: {
+            where: session ? { userId: session.user.id } : { userId: 0 },
+            //로그인했다면 로그인한 userId
+          },
         },
       });
 
