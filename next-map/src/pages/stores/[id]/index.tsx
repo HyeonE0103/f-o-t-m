@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
 import axios from "axios";
@@ -10,6 +8,8 @@ import Marker from "@/components/Marker";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import Like from "@/components/Like";
+import Comments from "@/components/comments";
 
 export default function StorePage() {
   const router = useRouter();
@@ -33,11 +33,12 @@ export default function StorePage() {
     즉 창이 2개열려있을 경우 왔다갔다 하면 다시 refetch하는데 default true임으로 false로 변경 */
   });
 
-  const handleDelete = async() => {
+  const handleDelete = async () => {
     const confirm = window.confirm("해당 가게를 삭제하시겠습니까?");
     //삭제하기전 유저에게 한번 더 확인
 
-    if (confirm && store) { //유저가 삭제하겠다고 하고 store가 있는 경우에만
+    if (confirm && store) {
+      //유저가 삭제하겠다고 하고 store가 있는 경우에만
       try {
         const result = await axios.delete(`/api/stores?id=${store?.id}`);
 
@@ -78,10 +79,11 @@ export default function StorePage() {
               {store?.address}
             </p>
           </div>
-          {status === "authenticated" && ( //로그인 한 사용자 즉 status가 authenticated만
-            <div className="flex items-center gap-3 px-4 py-3">
+          {status === "authenticated" && store && (
+            <div className="flex items-center gap-4 px-4 py-3">
+              <Like storeId={store.id} />
               <Link
-                className="hover:bg-gray-300 hover:text-black text-sm bg-blue-500 p-2 rounded-md text-white"
+                className="underline hover:text-gray-400 text-sm"
                 href={`/stores/${store?.id}/edit`}
               >
                 수정
@@ -89,7 +91,7 @@ export default function StorePage() {
               <button
                 type="button"
                 onClick={handleDelete}
-                className="hover:bg-gray-300 hover:text-black text-sm bg-blue-500 p-2 rounded-md text-white"
+                className="underline hover:text-gray-400 text-sm"
               >
                 삭제
               </button>
@@ -160,11 +162,11 @@ export default function StorePage() {
       </div>
       {isSuccess && (
         <div className="overflow-hidden w-full mb-20 max-w-5xl mx-auto max-h-[600px]">
-          {/* 지도가 웹페이지 전체크기로 되어있기 때문에 내가 원하는대로 맞춰 보여주기 위해 overflow-hidden을 하여 넘치는 부분 안보이게 설정 */}
           <Map lat={store?.lat} lng={store?.lng} zoom={1} />
           <Marker store={store} />
         </div>
       )}
+      {store?.id && <Comments storeId={store?.id} />}
     </>
   );
 }
