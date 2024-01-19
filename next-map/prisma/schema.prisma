@@ -18,6 +18,8 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  likes         Like[]
+  comments      Comment[] //한명의 유저 여러개의 댓글
 }
 
 model Store {
@@ -30,6 +32,30 @@ model Store {
   category  String?  // bizcnd_code_nm
   storeType String?  // cob_code_nm
   foodCertifyName String? // crtfc_gbn_nm
+  likes         Like[]
+  comments      Comment[] //하나의 가게 여러개의 댓글
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())  //현재 시간
+  storeId   Int
+  userId    Int
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, storeId])
+}
+
+model Comment { //Like에서 body만 추가
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  storeId   Int
+  userId    Int
+  body      String  //댓글 내용
+  store     Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  //하나의 가게의 여러개의 댓글, 한명의 유저가 여러개의 댓글
+  @@index([userId, storeId])  //더 빠른 query를 통해서 가져올수 있도록 index를 넣어둠
 }
 
 
