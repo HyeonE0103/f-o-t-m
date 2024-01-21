@@ -1,3 +1,5 @@
+"use client";
+
 import { StoreType } from "@/interface";
 import React, { useState } from "react";
 import { FieldErrors, UseFormRegister, UseFormSetValue } from "react-hook-form";
@@ -73,7 +75,7 @@ export default function AddressSearch({
       </div>
       {isOpen && (
         <div className="border border-gray-300 w-full col-span-full md:col-span-3 rounded-md p-2">
-          <DaumPostcodeEmbed onComplete={handleComplete}/>
+          <DaumPostcodeEmbed onComplete={handleComplete} />
         </div>
       )}
     </>
