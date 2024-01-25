@@ -34,10 +34,12 @@ const RAW_RUNTIME_STATE =
           ["@types/jest", "npm:27.5.2"],\
           ["@types/node", "npm:16.18.74"],\
           ["@types/react", "npm:18.2.48"],\
+          ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
           ["@types/react-dom", "npm:18.2.18"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
           ["classnames", "npm:2.5.1"],\
           ["craco-alias", "npm:3.0.1"],\
+          ["date-fns", "npm:3.3.1"],\
           ["eslint", "npm:8.56.0"],\
           ["eslint-config-prettier", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:9.1.0"],\
           ["eslint-config-react-app", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:7.0.1"],\
@@ -46,9 +48,12 @@ const RAW_RUNTIME_STATE =
           ["json-server", "npm:1.0.0-alpha.22"],\
           ["prettier", "npm:3.2.4"],\
           ["react", "npm:18.2.0"],\
+          ["react-copy-to-clipboard", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.1.0"],\
+          ["react-day-picker", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:8.10.0"],\
           ["react-dom", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:18.2.0"],\
           ["react-scripts", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.0.1"],\
           ["sass", "npm:1.70.0"],\
+          ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
@@ -5270,6 +5275,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@types/react-copy-to-clipboard", [\
+      ["npm:5.0.7", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/@types-react-copy-to-clipboard-npm-5.0.7-cf9459d351-10c0.zip/node_modules/@types/react-copy-to-clipboard/",\
+        "packageDependencies": [\
+          ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
+          ["@types/react", "npm:18.2.48"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@types/react-dom", [\
       ["npm:18.2.18", {\
         "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/@types-react-dom-npm-18.2.18-b316a8af22-10c0.zip/node_modules/@types/react-dom/",\
@@ -7540,6 +7555,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["copy-to-clipboard", [\
+      ["npm:3.3.3", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/copy-to-clipboard-npm-3.3.3-6964e6cfad-10c0.zip/node_modules/copy-to-clipboard/",\
+        "packageDependencies": [\
+          ["copy-to-clipboard", "npm:3.3.3"],\
+          ["toggle-selection", "npm:1.0.6"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["core-js", [\
       ["npm:3.35.1", {\
         "packageLocation": "./.yarn/unplugged/core-js-npm-3.35.1-faf977464a/node_modules/core-js/",\
@@ -8092,6 +8117,15 @@ const RAW_RUNTIME_STATE =
           ["abab", "npm:2.0.6"],\
           ["whatwg-mimetype", "npm:2.3.0"],\
           ["whatwg-url", "npm:8.7.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["date-fns", [\
+      ["npm:3.3.1", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/date-fns-npm-3.3.1-794b72f5e7-10c0.zip/node_modules/date-fns/",\
+        "packageDependencies": [\
+          ["date-fns", "npm:3.3.1"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -15678,6 +15712,56 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["react-copy-to-clipboard", [\
+      ["npm:5.1.0", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/react-copy-to-clipboard-npm-5.1.0-de9742f2bc-10c0.zip/node_modules/react-copy-to-clipboard/",\
+        "packageDependencies": [\
+          ["react-copy-to-clipboard", "npm:5.1.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-copy-to-clipboard-virtual-bdb2afea8b/4/Users/admin/AppData/Local/Yarn/Berry/cache/react-copy-to-clipboard-npm-5.1.0-de9742f2bc-10c0.zip/node_modules/react-copy-to-clipboard/",\
+        "packageDependencies": [\
+          ["react-copy-to-clipboard", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.1.0"],\
+          ["@types/react", "npm:18.2.48"],\
+          ["copy-to-clipboard", "npm:3.3.3"],\
+          ["prop-types", "npm:15.8.1"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/react",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["react-day-picker", [\
+      ["npm:8.10.0", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/react-day-picker-npm-8.10.0-f78f1a9c78-10c0.zip/node_modules/react-day-picker/",\
+        "packageDependencies": [\
+          ["react-day-picker", "npm:8.10.0"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:8.10.0", {\
+        "packageLocation": "./.yarn/__virtual__/react-day-picker-virtual-dcd4bb70f5/4/Users/admin/AppData/Local/Yarn/Berry/cache/react-day-picker-npm-8.10.0-f78f1a9c78-10c0.zip/node_modules/react-day-picker/",\
+        "packageDependencies": [\
+          ["react-day-picker", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:8.10.0"],\
+          ["@types/date-fns", null],\
+          ["@types/react", "npm:18.2.48"],\
+          ["date-fns", "npm:3.3.1"],\
+          ["react", "npm:18.2.0"]\
+        ],\
+        "packagePeers": [\
+          "@types/date-fns",\
+          "@types/react",\
+          "date-fns",\
+          "react"\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["react-dev-utils", [\
       ["npm:12.0.1", {\
         "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/react-dev-utils-npm-12.0.1-83ba06e3ee-10c0.zip/node_modules/react-dev-utils/",\
@@ -15883,10 +15967,12 @@ const RAW_RUNTIME_STATE =
           ["@types/jest", "npm:27.5.2"],\
           ["@types/node", "npm:16.18.74"],\
           ["@types/react", "npm:18.2.48"],\
+          ["@types/react-copy-to-clipboard", "npm:5.0.7"],\
           ["@types/react-dom", "npm:18.2.18"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
           ["classnames", "npm:2.5.1"],\
           ["craco-alias", "npm:3.0.1"],\
+          ["date-fns", "npm:3.3.1"],\
           ["eslint", "npm:8.56.0"],\
           ["eslint-config-prettier", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:9.1.0"],\
           ["eslint-config-react-app", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:7.0.1"],\
@@ -15895,9 +15981,12 @@ const RAW_RUNTIME_STATE =
           ["json-server", "npm:1.0.0-alpha.22"],\
           ["prettier", "npm:3.2.4"],\
           ["react", "npm:18.2.0"],\
+          ["react-copy-to-clipboard", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.1.0"],\
+          ["react-day-picker", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:8.10.0"],\
           ["react-dom", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:18.2.0"],\
           ["react-scripts", "virtual:8faa9c7ca2700aa1193d17388b5ed5d4774b82791037d011ebaf2f53e4ada69c8a559d3d9a12281cc21b93b65736c215dee448916306c19e89fa9c55a558ba4d#npm:5.0.1"],\
           ["sass", "npm:1.70.0"],\
+          ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["web-vitals", "npm:2.1.4"]\
         ],\
@@ -16918,6 +17007,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["ssr-window", [\
+      ["npm:4.0.2", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/ssr-window-npm-4.0.2-01f9c0151e-10c0.zip/node_modules/ssr-window/",\
+        "packageDependencies": [\
+          ["ssr-window", "npm:4.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["ssri", [\
       ["npm:10.0.5", {\
         "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/ssri-npm-10.0.5-1a7557d04d-10c0.zip/node_modules/ssri/",\
@@ -17360,6 +17458,16 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["swiper", [\
+      ["npm:9.4.1", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/swiper-npm-9.4.1-38d46d35a3-10c0.zip/node_modules/swiper/",\
+        "packageDependencies": [\
+          ["swiper", "npm:9.4.1"],\
+          ["ssr-window", "npm:4.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["symbol-tree", [\
       ["npm:3.2.4", {\
         "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/symbol-tree-npm-3.2.4-fe70cdb75b-10c0.zip/node_modules/symbol-tree/",\
@@ -17610,6 +17718,15 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["to-regex-range", "npm:5.0.1"],\
           ["is-number", "npm:7.0.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["toggle-selection", [\
+      ["npm:1.0.6", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/toggle-selection-npm-1.0.6-c506b73005-10c0.zip/node_modules/toggle-selection/",\
+        "packageDependencies": [\
+          ["toggle-selection", "npm:1.0.6"]\
         ],\
         "linkType": "HARD"\
       }]\
