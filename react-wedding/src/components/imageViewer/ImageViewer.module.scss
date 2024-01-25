@@ -1,0 +1,10 @@
+.icon-close {
+  width: 25px;
+  height: 25px;
+  fill: #fff;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2; //swiper이 기본적으로 z-index:1을 줌
+  cursor: pointer;
+}

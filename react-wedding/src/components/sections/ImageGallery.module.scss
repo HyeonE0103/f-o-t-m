@@ -1,0 +1,25 @@
+.wrap-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+
+  .wrap-image {
+    width: 100%;
+    position: relative;
+
+    &::after {
+      display: block;
+      content: '';
+      padding-bottom: 100%; //%를 조절하면 1대 1비율말고 다양한 비율을 맞출수 있음
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      object-fit: cover; //억지로 1대 1비율로 맞추다 보니 안예뻐서 타협
+      border-radius: 8px;
+    }
+  }
+}

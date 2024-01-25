@@ -1,0 +1,21 @@
+/* 기존에 스타일링 할때는 scope를 잘라서 하는 방식임(bind는 지역 스코프를 가짐)
+swiper는 라이브러리를 가져와 오버라이드해서 스타일 하는것이기 때문에 scope가 달라서
+기존에 하고 있는 방식으로 하면 같은 클래스라는 것을 인식을 못함
+즉 외부 라이브러리 스타일 오버라이드할때는 스코프를 사용하면 안됨
+따라서 파일 하나 빼서 swiper에 style 주는 것 */
+
+.swiper,
+.swiper-wrapper {
+  height: 100% !important;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.swiper-slide img {
+  width: 100%;
+}
