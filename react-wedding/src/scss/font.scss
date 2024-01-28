@@ -1,7 +1,9 @@
 @font-face {
   font-family: 'NanumJungHagSaeng';
   src:
-    url('../assets/fonts/NanumJungHagSaeng.woff2') format('woff2'),
-    url('../assets/fonts/NanumJungHagSaeng.woff') format('woff'),
-    url('../assets/fonts/NanumJungHagSaeng.ttf') format('truetype');
+    url('../assets/fonts/subset-NanumJungHagSaeng.woff2') format('woff2'),
+    url('../assets/fonts/subset-NanumJungHagSaeng.woff') format('woff'),
+    url('../assets/fonts/subset-NanumJungHagSaeng.ttf') format('truetype');
+
+  font-display: fallback;
 }
