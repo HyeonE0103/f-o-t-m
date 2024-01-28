@@ -1,4 +1,4 @@
-import { useModalContext } from '@/contexts/MocalContext'
+import { useModalContext } from '@/contexts/ModalContext'
 import { Wedding } from '@/models/wedding'
 import React, { useEffect, useRef } from 'react'
 
@@ -44,7 +44,11 @@ const AttendCountModal = ({ wedding }: { wedding: Wedding }) => {
         close()
       },
     })
-  }, []) // eslint-disable-line
+  }, [open, close, havSeenModal, wedding])
+  /*의존성 배열에 open을 넣으면 무한루프. useEffect는 의존성 값이 바뀌면 Callback함수를 실행함
+  open은 어떤 값을 받아서 상태값을 업데이트 함. 그러면서 해당 ModalContext가 다시 렌더링되고
+  Context로 감싸져 있는 App도 다시 리렌더링되고 하위 자식도 다시 리렌더링되고
+  그 안에 있는 AttendCountModal도 다시 리렌더링 됨. 그러면서 다시 open에 새값으로 useEffect 실행*/
 
   return null
 }

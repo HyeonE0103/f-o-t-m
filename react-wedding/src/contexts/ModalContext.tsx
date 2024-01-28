@@ -1,5 +1,12 @@
 import Modal from '@shared/Modal'
-import { createContext, useContext, ComponentProps, useState } from 'react'
+import {
+  createContext,
+  useContext,
+  ComponentProps,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react'
 import { createPortal } from 'react-dom'
 
 type ModalProps = ComponentProps<typeof Modal>
@@ -29,20 +36,25 @@ export function ModalContext({ children }: { children: React.ReactNode }) {
 
   const $portal_root = document.getElementById('portal_root')
 
-  const open = (options: ModalOptions) => {
+  const open = useCallback((options: ModalOptions) => {
     setModalState({ ...options, open: true })
     //위에서 options에 open이 제외되어 있기 때문에 따로 open:true로 넣어줌
-  }
+  }, [])
+  /*open은 따로 바깥값에 영향을 받지 않음. 파라미터를 넘겨받아 파라미터를 state로 업데이트
+  따라서 한번 만들어지면 그대로 캐시해서 사용해도 되는 함수임*/
 
-  const close = () => {
+  const close = useCallback(() => {
     //defaultValues로 바꾸어 모달 닫음(open:false)
     setModalState(defaultValues)
-  }
+  }, [])
 
-  const values = {
-    open,
-    close,
-  }
+  const values = useMemo(
+    () => ({
+      open,
+      close,
+    }),
+    [open, close],
+  )
 
   return (
     <Context.Provider value={values}>
