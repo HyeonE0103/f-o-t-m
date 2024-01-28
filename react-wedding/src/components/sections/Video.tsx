@@ -17,8 +17,10 @@ const Video = () => {
         video에서 바로 src를 주는 경우에는 autoPlay옵션을 주는 것만으로 동영상 플레이가 가능하지만
         scource태그를 같이 쓰는 경우에는 muted 옵션도 설정해주어야 함. loop옵션은 동영상이 끝나면 다시 처음부터 시작되도록 함
         동영상을 컨트롤할 수 있는 재생바 등을 나타내고 싶으면 controls 옵션을 주면 됨*/}
+        <source src="/assets/main.webm" type="video/webm"></source>
         <source src="/assets/main.mp4" type="video/mp4"></source>
-        {/* cra같은 경우에는 '/'를 적어주게 되면 public 아래의 경로를 바라보게 됨 */}
+        {/* cra같은 경우에는 '/'를 적어주게 되면 public 아래의 경로를 바라보게 됨 
+        webm을 사용하고 브라우저에서 webm을 사용하지 못하면 mp4를 사용*/}
       </video>
     </Section>
   )
