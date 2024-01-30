@@ -6,13 +6,19 @@ import reportWebVitals from './reportWebVitals'
 import globalStyles from './styles/globalStyles'
 import { Global } from '@emotion/react'
 import { AlertContextProvider } from '@contexts/AlertContext'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
+const client = new QueryClient({
+  defaultOptions: {},
+})
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <AlertContextProvider>
-      <Global styles={globalStyles} />
-      <App />
+      <QueryClientProvider client={client}>
+        <Global styles={globalStyles} />
+        <App />
+      </QueryClientProvider>
     </AlertContextProvider>
   </React.StrictMode>,
 )
