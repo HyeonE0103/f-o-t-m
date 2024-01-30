@@ -3,14 +3,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@shared/*": ["src/components/shared/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
-      "@shared/*": ["src/components/shared/*"],
       "@contexts/*": ["src/contexts/*"],
       "@models/*": ["src/models/*"],
       "@pages/*": ["src/pages/*"],
       "@remote/*": ["src/remote/*"],
-      "@constants/*": ["src/constants/index.ts"]
+      "@constants/*": ["src/constants/index"]
     }
   }
 }
