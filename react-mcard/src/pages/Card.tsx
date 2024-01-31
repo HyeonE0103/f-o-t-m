@@ -3,15 +3,35 @@ import ListRow from '@shared/ListRow'
 import Top from '@shared/Top'
 import { getCard } from '@/remote/card'
 import { useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import { css } from '@emotion/react'
 import { motion } from 'framer-motion'
+import { useCallback } from 'react'
+import { useAlertContext } from '@/contexts/AlertContext'
+import useUser from '@/hooks/auth/useUser'
 
 const Card = () => {
+  const user = useUser()
+  const navigate = useNavigate()
+  const { open } = useAlertContext()
   const { id = '' } = useParams()
   //항상 id가 있다는 것이 보장되지 않기 때문에 default value를 줌
+
+  const moveToApply = useCallback(() => {
+    if (user == null) {
+      //로그인을 안했다면 alert을 띄우고 로그인창으로 이동
+      open({
+        title: '로그인이 필요한 기능입니다.',
+        onButtonClick: () => {
+          navigate(`/signin`)
+        },
+      })
+      return //리턴을 해서 끊어주기
+    }
+    navigate(`/apply/${id}`) //로그인했다면 apply페이지 이동
+  }, [user, id, open, navigate])
 
   const { data } = useQuery(['card', id], () => getCard(id), {
     enabled: id !== '', //id가 없으면 조회하는 이유가 없어서 id가 있을때만 호출
@@ -26,6 +46,7 @@ const Card = () => {
   const subTitle =
     promotion != null ? removeHtmlTags(promotion.title) : tags.join(',')
   //프로포션이 있다면 프로모션 정보를 노출하고 아니면 tag정보 노출
+
   return (
     <div>
       <Top title={`${corpName} ${name}`} subTitle={subTitle} />
@@ -69,7 +90,7 @@ const Card = () => {
         </Flex>
       )}
 
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton label="신청하기" onClick={moveToApply} />
     </div>
   )
 }
