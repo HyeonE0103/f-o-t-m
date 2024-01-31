@@ -58,6 +58,7 @@ const RAW_RUNTIME_STATE =
           ["react-query", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:3.39.3"],\
           ["react-router-dom", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:6.21.3"],\
           ["react-scripts", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:5.0.1"],\
+          ["recoil", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:0.7.7"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["validator", "npm:13.11.0"],\
@@ -11645,6 +11646,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["hamt_plus", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/hamt_plus-npm-1.0.2-67a52ee1df-10c0.zip/node_modules/hamt_plus/",\
+        "packageDependencies": [\
+          ["hamt_plus", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["handle-thing", [\
       ["npm:2.0.1", {\
         "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/handle-thing-npm-2.0.1-084baca59e-10c0.zip/node_modules/handle-thing/",\
@@ -17190,6 +17200,7 @@ const RAW_RUNTIME_STATE =
           ["react-query", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:3.39.3"],\
           ["react-router-dom", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:6.21.3"],\
           ["react-scripts", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:5.0.1"],\
+          ["recoil", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:0.7.7"],\
           ["swiper", "npm:9.4.1"],\
           ["typescript", "patch:typescript@npm%3A4.9.5#optional!builtin<compat/typescript>::version=4.9.5&hash=289587"],\
           ["validator", "npm:13.11.0"],\
@@ -17410,6 +17421,37 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["readdirp", "npm:3.6.0"],\
           ["picomatch", "npm:2.3.1"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["recoil", [\
+      ["npm:0.7.7", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/recoil-npm-0.7.7-4452f58b67-10c0.zip/node_modules/recoil/",\
+        "packageDependencies": [\
+          ["recoil", "npm:0.7.7"]\
+        ],\
+        "linkType": "SOFT"\
+      }],\
+      ["virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:0.7.7", {\
+        "packageLocation": "./.yarn/__virtual__/recoil-virtual-84adefccb5/4/Users/admin/AppData/Local/Yarn/Berry/cache/recoil-npm-0.7.7-4452f58b67-10c0.zip/node_modules/recoil/",\
+        "packageDependencies": [\
+          ["recoil", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:0.7.7"],\
+          ["@types/react", "npm:18.2.48"],\
+          ["@types/react-dom", "npm:18.2.18"],\
+          ["@types/react-native", null],\
+          ["hamt_plus", "npm:1.0.2"],\
+          ["react", "npm:18.2.0"],\
+          ["react-dom", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:18.2.0"],\
+          ["react-native", null]\
+        ],\
+        "packagePeers": [\
+          "@types/react-dom",\
+          "@types/react-native",\
+          "@types/react",\
+          "react-dom",\
+          "react-native",\
+          "react"\
         ],\
         "linkType": "HARD"\
       }]\
