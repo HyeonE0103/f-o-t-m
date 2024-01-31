@@ -1,13 +1,15 @@
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { auth, store } from '@/remote/firebase'
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { COLLECTIONS } from '@/constants'
+import { useNavigate } from 'react-router-dom'
 
 import { FormValues } from '@/models/signup'
 import Form from '@components/signup/Form'
 
-import { auth, store } from '@/remote/firebase'
-import { collection, doc, setDoc } from 'firebase/firestore'
-import { COLLECTIONS } from '@/constants'
-
 const SignupPage = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = async (formValues: FormValues) => {
     const { email, password, name } = formValues
     const { user } = await createUserWithEmailAndPassword(auth, email, password)
@@ -24,6 +26,8 @@ const SignupPage = () => {
 
     await setDoc(doc(collection(store, COLLECTIONS.USER), user.uid), newUser)
     //firestore이 지정한 id가 아닌 id를 직접 지정
+
+    navigate('/signin')
   }
 
   return (
