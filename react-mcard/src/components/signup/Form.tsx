@@ -112,7 +112,9 @@ const validate = (formValues: FormValues) => {
   }
   if (formValues.rePassword.length < 8) {
     errors.rePassword = '비밀번호는 8글자 이상 입력해주세요'
-  } else if (validator.equals(formValues.password, formValues.rePassword)) {
+  } else if (
+    validator.equals(formValues.password, formValues.rePassword) === false
+  ) {
     errors.rePassword = '비밀번호를 확인해주세요'
   }
   if (formValues.name.length < 2) {
