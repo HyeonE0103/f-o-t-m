@@ -6,6 +6,10 @@ import Card from '@pages/Card'
 import SigninPage from '@pages/Signin'
 import SignupPage from '@pages/Signup'
 import Navbar from '@shared/Navbar'
+import PrivateRoute from '@components/auth/PrivateRoute'
+import ApplyPage from '@pages/Apply'
+import ApplyDone from './pages/ApplyDone'
+import { Suspense } from 'react'
 
 function App() {
   return (
@@ -16,8 +20,27 @@ function App() {
         <Route path="/" Component={HomePage} />
         <Route path="/signin" Component={SigninPage} />
         <Route path="/signup" Component={SignupPage} />
-        <Route path="/test" Component={TestPage} />
         <Route path="/card/:id" Component={Card} />
+        <Route
+          path="/apply/:id"
+          element={
+            <Suspense fallback={<></>}>
+              <PrivateRoute>
+                <ApplyPage />
+              </PrivateRoute>
+            </Suspense>
+          }
+        />
+        <Route
+          path="/apply/done"
+          element={
+            <PrivateRoute>
+              <ApplyDone />
+            </PrivateRoute>
+          }
+        />
+
+        <Route path="/test" Component={TestPage} />
       </Routes>
     </BrowserRouter>
   )
