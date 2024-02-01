@@ -7,6 +7,9 @@ import {
 } from '@/styles/button'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import Flex from './Flex'
+import Spacing from './Spacing'
+import Text from './Text'
 
 interface ButtonProps {
   color?: ButtonColor
@@ -16,7 +19,7 @@ interface ButtonProps {
   disabled?: boolean
 }
 
-const Button = styled.button<ButtonProps>(
+const BaseButton = styled.button<ButtonProps>(
   {
     cursor: 'pointer',
     fontWeight: 'bold',
@@ -42,4 +45,45 @@ const Button = styled.button<ButtonProps>(
         `
       : undefined,
 )
+
+function ButtonGroup({
+  title,
+  children,
+}: {
+  title?: string
+  children: React.ReactNode
+}) {
+  return (
+    <Flex direction="column">
+      {title != null ? (
+        <>
+          <Text typography="t6" bold={true}>
+            {title}
+          </Text>
+          <Spacing size={8} />
+        </>
+      ) : null}
+      <Flex css={buttonGroupStyle}>{children}</Flex>
+    </Flex>
+  )
+}
+
+const buttonGroupStyle = css`
+  flex-wrap: wrap;
+  gap: 10px;
+
+  & button {
+    flex: 1;
+  }
+`
+//<Button.ButtonGroup>
+
+const Button = BaseButton as typeof BaseButton & {
+  //BaseButton의 모든 속성을 사용할 수 있어야 함
+  Group: typeof ButtonGroup
+  //Group이라는 값을 가질수 있도록 타입을 만들어줌
+}
+
+Button.Group = ButtonGroup
+
 export default Button
