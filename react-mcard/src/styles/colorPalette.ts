@@ -8,6 +8,7 @@ export const colorPalette = css`
     --white: #fff;
     --black: #212121;
     --gray: #f0efef;
+    --darkgray: #c0c4c7;
   }
 `
 export const colors = {
@@ -18,8 +19,9 @@ export const colors = {
   white: 'var(--white)',
   black: 'var(--black)',
   gray: 'var(--gray)',
+  darkgray: 'var(--darkgray)',
 }
 
 export type Colors = keyof typeof colors
 //키값만 빼와서 type 선언
-//type Colors = "red" | "blue" | "green" | "white" | "black" | "gray"
+//type Colors = "red" | "blue" | "green" | "white" | "black" | "gray" | "darkgray"
