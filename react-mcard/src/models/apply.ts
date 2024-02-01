@@ -6,6 +6,13 @@ export interface Term {
   title: string
 }
 
+export const APPLY_STATUS = {
+  REDAY: 'REDAY', //준비단계
+  PROGRESS: 'PROGRESS', //진행단계
+  COMPLETE: 'COMPLETE', //완료단계
+  REJECT: 'REJECT', //거절
+} as const
+
 export interface ApplyValues {
   userId: User['uid'] //어떤 유저가 신청했는지
   terms: Array<Term['id']> //어떤 약관에 동의했는지
@@ -17,6 +24,9 @@ export interface ApplyValues {
   isMaster: boolean
   isHipass: boolean
   isRf: boolean
+  status: keyof typeof APPLY_STATUS
+  //key값만 빼옴
+  step: number
 }
 
 export interface Option {
