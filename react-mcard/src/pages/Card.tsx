@@ -54,6 +54,7 @@ const Card = () => {
         {benefit.map((text, i) => {
           return (
             <motion.li
+              key={i}
               initial={{ opacity: 0, translateX: -90 }}
               // whileInView={{
               //   //해당 요소가 화면에 보이면 다시 애니메이션이 실행됨
