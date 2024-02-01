@@ -2,8 +2,13 @@ import React, { MouseEvent, useCallback, useState } from 'react'
 import Agreement from '@shared/Agreement'
 import { 약관목록 } from '@/constants/apply'
 import FixedBottomButton from '../shared/FixedBottomButton'
+import { ApplyValues } from '@/models/apply'
 
-const Terms = ({ onNext }: { onNext: (terms: string[]) => void }) => {
+const Terms = ({
+  onNext,
+}: {
+  onNext: (terms: ApplyValues['terms']) => void
+}) => {
   const [termsAgreements, setTermsAgreements] = useState(() => {
     return 약관목록.reduce<Record<string, boolean>>(
       //Record Type은 Record<Key, Type> 형식으로 키가 Key이고 값이 Type인 객체 타입
