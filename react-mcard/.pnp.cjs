@@ -38,6 +38,7 @@ const RAW_RUNTIME_STATE =
           ["@types/jest", "npm:27.5.2"],\
           ["@types/lodash", "npm:4.14.202"],\
           ["@types/node", "npm:16.18.76"],\
+          ["@types/qs", "npm:6.9.11"],\
           ["@types/react", "npm:18.2.48"],\
           ["@types/react-dom", "npm:18.2.18"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
@@ -52,6 +53,7 @@ const RAW_RUNTIME_STATE =
           ["framer-motion", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:11.0.3"],\
           ["lodash", "npm:4.17.21"],\
           ["prettier", "npm:3.2.4"],\
+          ["qs", "npm:6.11.2"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:18.2.0"],\
           ["react-infinite-scroll-component", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:6.1.0"],\
@@ -16947,6 +16949,14 @@ const RAW_RUNTIME_STATE =
           ["side-channel", "npm:1.0.4"]\
         ],\
         "linkType": "HARD"\
+      }],\
+      ["npm:6.11.2", {\
+        "packageLocation": "../../../Users/admin/AppData/Local/Yarn/Berry/cache/qs-npm-6.11.2-b118bc1c6f-10c0.zip/node_modules/qs/",\
+        "packageDependencies": [\
+          ["qs", "npm:6.11.2"],\
+          ["side-channel", "npm:1.0.4"]\
+        ],\
+        "linkType": "HARD"\
       }]\
     ]],\
     ["querystringify", [\
@@ -17180,6 +17190,7 @@ const RAW_RUNTIME_STATE =
           ["@types/jest", "npm:27.5.2"],\
           ["@types/lodash", "npm:4.14.202"],\
           ["@types/node", "npm:16.18.76"],\
+          ["@types/qs", "npm:6.9.11"],\
           ["@types/react", "npm:18.2.48"],\
           ["@types/react-dom", "npm:18.2.18"],\
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
@@ -17194,6 +17205,7 @@ const RAW_RUNTIME_STATE =
           ["framer-motion", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:11.0.3"],\
           ["lodash", "npm:4.17.21"],\
           ["prettier", "npm:3.2.4"],\
+          ["qs", "npm:6.11.2"],\
           ["react", "npm:18.2.0"],\
           ["react-dom", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:18.2.0"],\
           ["react-infinite-scroll-component", "virtual:a358fbfee65f381de2285b345e904a9a884384ae8cb8391d2174e5bf58ab2dbb0542b68887f4318fe1879a3bd84763ef12e5ec4f24f376c1e15f15632cac488c#npm:6.1.0"],\
