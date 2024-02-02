@@ -3,8 +3,6 @@ import { css } from '@emotion/react'
 import { Link, useLocation } from 'react-router-dom'
 
 import { useCallback } from 'react'
-import { signOut } from 'firebase/auth'
-import { auth } from '@/remote/firebase'
 import useUser from '@/hooks/auth/useUser'
 
 import Button from '@shared/Button'
