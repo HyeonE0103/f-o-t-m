@@ -11,7 +11,21 @@ import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const AdBanners = () => {
-  const { data } = useQuery(['adBanners'], () => getAdBanners())
+  const { data, isLoading } = useQuery(['adBanners'], () => getAdBanners())
+
+  if (data == null || isLoading) {
+    //데이터가 없거나 로딩중이라면
+    return (
+      <Container>
+        <Flex direction="column" css={bannerContainerStyles}>
+          <Text bold={true}>&nbsp;</Text>
+          {/* &nbsp;는 공백을 나타나는 특수문자. 즉 있는채하기 위해 넣음 */}
+          <Text typography="t7">&nbsp;</Text>
+        </Flex>
+      </Container>
+    )
+  }
+
   return (
     <Container>
       <Swiper spaceBetween={8}>

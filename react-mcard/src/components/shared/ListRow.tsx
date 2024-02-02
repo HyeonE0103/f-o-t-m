@@ -1,6 +1,8 @@
 import { css } from '@emotion/react'
 import React from 'react'
 import Flex from './Flex'
+import Skeleton from './Skeleton'
+import Spacing from './Spacing'
 import Text from './Text'
 
 interface ListRowProps {
@@ -33,6 +35,7 @@ const ListRow = ({
 
 const listRowContainerStyles = css`
   padding: 8px 24px;
+  cursor: pointer;
 `
 
 const listRowLeftStyles = css`
@@ -47,13 +50,33 @@ const ListRowTexts = ({
   title,
   subTitle,
 }: {
-  title: string
-  subTitle: string
+  title: React.ReactNode //안에 string도 포함되어있음
+  subTitle: React.ReactNode
 }) => {
   return (
     <Flex direction="column">
       <Text bold={true}>{title}</Text>
       <Text typography="t7">{subTitle}</Text>
+    </Flex>
+  )
+}
+
+const ListRowSkeleton = () => {
+  return (
+    <Flex as="li" css={listRowContainerStyles} align="center">
+      <Flex css={listRowLeftStyles}></Flex>
+      <Flex css={listRowContentsStyles}>
+        <ListRow.Texts
+          title={
+            <>
+              <Skeleton width={67} height={23} />
+              <Spacing size={2} />
+            </>
+          }
+          subTitle={<Skeleton width={85} height={20} />}
+        />
+      </Flex>
+      <IconArrowRight />
     </Flex>
   )
 }
@@ -74,4 +97,6 @@ const IconArrowRight = () => {
 
 ListRow.Texts = ListRowTexts
 //함수도 객체이기 때문에 키와 밸류를 이용해서 컴포넌트를 넣어 줄 수 있음
+ListRow.Skeleton = ListRowSkeleton
+
 export default ListRow
