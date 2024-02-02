@@ -19,7 +19,8 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
         uid: user.uid,
         email: user.email ?? '',
         displayName: user.displayName ?? '',
-        //email과 displayName이 옵셔널이기 때문에 없다면 빈문자열
+        photoURL: user.photoURL ?? '',
+        //email과 displayName, photoURL이 옵셔널이기 때문에 없다면 빈문자열
       })
     } else {
       //유저가 로그인하지 않은 상태
