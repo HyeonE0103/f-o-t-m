@@ -9,6 +9,7 @@ import useUser from '@/hooks/auth/useUser'
 
 import Button from '@shared/Button'
 import Flex from '@shared/Flex'
+import MyImage from '../my/MyImage'
 
 const Navbar = () => {
   const location = useLocation()
@@ -17,18 +18,18 @@ const Navbar = () => {
 
   const user = useUser()
 
-  const handleLogout = useCallback(() => {
-    signOut(auth)
-  }, [])
-
   const renderButton = useCallback(() => {
     if (user != null) {
-      //로그인한 상태
-      return <Button onClick={handleLogout}>로그아웃</Button>
+      //로그인한 상태, 마이페이지로 이동
+      return (
+        <Link to="/my">
+          <MyImage size={40} />
+        </Link>
+      )
     }
 
     if (showSignButton) {
-      //로그인 하지 않은 상태
+      //로그인 하지 않은 상태, 로그인화면으로 이동
       return (
         <Link to="/signin">
           <Button>로그인/회원가입</Button>
@@ -37,7 +38,7 @@ const Navbar = () => {
     }
 
     return null
-  }, [user, showSignButton, handleLogout])
+  }, [user, showSignButton])
 
   return (
     <Flex justify="space-between" align="center" css={navbarContainerStyle}>
