@@ -11,6 +11,8 @@ import { motion } from 'framer-motion'
 import { useCallback } from 'react'
 import { useAlertContext } from '@/contexts/AlertContext'
 import useUser from '@/hooks/auth/useUser'
+import Review from '@/components/card/Review'
+import Spacing from '@/components/shared/Spacing'
 
 const Card = () => {
   const user = useUser()
@@ -91,7 +93,16 @@ const Card = () => {
         </Flex>
       )}
 
-      <FixedBottomButton label="신청하기" onClick={moveToApply} />
+      <Spacing size={1000} />
+
+      <Review />
+
+      <Spacing size={100} />
+
+      <FixedBottomButton
+        label="1분만에 신청하고 혜택받기"
+        onClick={moveToApply}
+      />
     </div>
   )
 }
@@ -129,19 +140,9 @@ const IconCheck = () => {
   )
 }
 
-const removeHtmlTags = (text: string) => {
-  let output = ''
-  for (let i = 0; i < text.length; i += 1) {
-    if (text[i] === '<') {
-      for (let j = i + 1; j < text.length; j += 1) {
-        if (text[j] === '>') {
-          i = j
-          break
-        }
-      }
-    } else output += text[i]
-  }
-  return output
+function removeHtmlTags(text: string) {
+  return text.replace(/<\/?[^>]+(>|$)/g, '')
+  //html <와 > 사이에 문자열 가지고 와서 공백으로 치환
 }
 
 export default Card
