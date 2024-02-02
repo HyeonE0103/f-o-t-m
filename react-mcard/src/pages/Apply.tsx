@@ -10,6 +10,12 @@ import { updateApplyCard } from '@remote/apply'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+const STATUS_MESSAGE = {
+  [APPLY_STATUS.REDAY]: '카드 심사를 준비하고 있습니다',
+  [APPLY_STATUS.PROGRESS]: '카드를 심사중입니다 잠시만 기다려주세요',
+  [APPLY_STATUS.COMPLETE]: '카드 신청이 완료되었습니다',
+}
+
 const ApplyPage = () => {
   const navigate = useNavigate()
   const { open } = useAlertContext()
@@ -54,7 +60,7 @@ const ApplyPage = () => {
     },
   })
 
-  usePollApplyStatus({
+  const { data: status } = usePollApplyStatus({
     onSuccess: async () => {
       await updateApplyCard({
         //업데이트의 경우 Promise를 내보내기 때문에 async-await사용
@@ -108,7 +114,8 @@ const ApplyPage = () => {
 
   if (readyToPoll || 카드를신청중인가) {
     //카드가 신청중인지 혹은 카드사에서 심사중인지
-    return <FullPageLoader message="카드를 신청중입니다" />
+    return <FullPageLoader message={STATUS_MESSAGE[status ?? 'REDAY']} />
+    //status값이 undefined일수도 있어도 그럴경우 'REDAY'상태
   }
 
   return <Apply onSubmit={mutate} />
