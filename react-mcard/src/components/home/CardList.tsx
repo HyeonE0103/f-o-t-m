@@ -2,10 +2,11 @@ import React, { useCallback } from 'react'
 import ListRow from '@shared/ListRow'
 import { useInfiniteQuery } from 'react-query'
 import { getCards } from '@/remote/card'
-import { flatten } from 'lodash'
+import flatten from 'lodash.flatten'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Badge from '@shared/Badge'
 import { useNavigate } from 'react-router-dom'
+import Spacing from '../shared/Spacing'
 //내 모니터 화면이 더 커서 데이터가 안불러와져;;;;
 
 const CardList = () => {
@@ -30,6 +31,7 @@ const CardList = () => {
         //(2) 불러진 데이터 snapshot으로 들어옴
         return snapshot.lastVisible //(3)snapshot의 마지막 데이터(커서요소)를 리턴
       },
+      suspense: true,
     },
   )
 
@@ -48,7 +50,7 @@ const CardList = () => {
       <InfiniteScroll
         dataLength={cards.length}
         hasMore={hasNextPage}
-        loader={<></>}
+        loader={<ListRow.Skeleton />}
         next={loadMore}
         scrollThreshold="100px"
       >
@@ -56,17 +58,20 @@ const CardList = () => {
           {/* dataLength는 데이터의 개수, hasMore은 다음 페이지를 부를 수 있는지 여부, loader는 로딩중에 대체제, next는 fetch함수를 넣어주면 됨, scrollThreshold는 특정 부분에서 어떻게 불러올지*/}
           {cards?.map((card, i) => {
             return (
-              <ListRow
-                key={i}
-                contents={
-                  <ListRow.Texts title={`${i + 1}위`} subTitle={card.name} />
-                }
-                right={card.payback && <Badge label={card.payback} />}
-                withArrow={true}
-                onClick={() => {
-                  navigate(`/card/${card.id}`)
-                }}
-              />
+              <>
+                <ListRow
+                  key={i}
+                  contents={
+                    <ListRow.Texts title={`${i + 1}위`} subTitle={card.name} />
+                  }
+                  right={card.payback && <Badge label={card.payback} />}
+                  withArrow={true}
+                  onClick={() => {
+                    navigate(`/card/${card.id}`)
+                  }}
+                />
+                <Spacing size={5} />
+              </>
             )
           })}
         </ul>
