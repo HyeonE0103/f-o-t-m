@@ -5,6 +5,9 @@ import useUser from '@/hooks/auth/useUser'
 import { ApplyValues, APPLY_STATUS } from '@/models/apply'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import ProgressBar from '@shared/ProgressBar'
+
+const LAST_STEP = 3
 
 const Apply = ({
   onSubmit,
@@ -92,6 +95,8 @@ const Apply = ({
 
   return (
     <div>
+      <ProgressBar progress={(applyValues.step as number) / LAST_STEP} />
+      {/* Partial<ApplyValues>로 되어있어 ts 오류가 나 as문으로 타입 정의*/}
       {applyValues.step === 0 ? <Terms onNext={handleTermsChange} /> : null}
       {/* 해당 약관에 대한 처리는 Terms 컴포넌트가 하되
       특정시점에서 데이터가 어떻게 변하는지는 ApplyPage에서 알수 있으며
