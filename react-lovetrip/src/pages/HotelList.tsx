@@ -6,9 +6,11 @@ import useHotels from '@components/hotelList/hooks/useHotels'
 import Top from '@shared/Top'
 import Spacing from '@shared/Spacing'
 import HotelItem from '@/components/hotelList/HotelItem'
+import useLike from '@/hooks/like/useLike'
 
-function HotelList() {
+function HotelListPage() {
   const { data: hotels, hasNextPage, loadMore } = useHotels()
+  const { data: likes, mutate: like } = useLike()
 
   return (
     <div>
@@ -24,7 +26,14 @@ function HotelList() {
         <ul>
           {hotels?.map((hotel, i) => (
             <Fragment key={hotel.id}>
-              <HotelItem hotel={hotel} />
+              <HotelItem
+                hotel={hotel}
+                onLike={like}
+                isLike={Boolean(
+                  likes?.find((like) => like.hotelId === hotel.id),
+                )}
+                // find는 조건에 맞는 값 중 첫번째 값을 리턴하고 없으면 undefined 리턴
+              />
               {hotels.length - 1 === i ? null : ( //맨 마지막 요소에는 구분자가 없도록
                 <Spacing
                   size={8}
@@ -40,4 +49,4 @@ function HotelList() {
   )
 }
 
-export default HotelList
+export default HotelListPage

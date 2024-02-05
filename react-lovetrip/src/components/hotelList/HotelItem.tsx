@@ -7,13 +7,25 @@ import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import Spacing from '@shared/Spacing'
 import Tag from '@shared/Tag'
-import { useEffect, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { differenceInMilliseconds, parseISO } from 'date-fns'
 import formatTime from '@/utils/formatTime'
 import { Link } from 'react-router-dom'
 import addDelimiter from '@/utils/addDelimiter'
 
-const HotelItem = ({ hotel }: { hotel: Hotel }) => {
+const HotelItem = ({
+  hotel,
+  isLike,
+  onLike,
+}: {
+  hotel: Hotel
+  isLike: boolean
+  onLike: ({
+    hotel,
+  }: {
+    hotel: Pick<Hotel, 'name' | 'id' | 'mainImageUrl'>
+  }) => void
+}) => {
   const [remainedTime, setRemainedTime] = useState(0)
 
   useEffect(() => {
@@ -74,6 +86,18 @@ const HotelItem = ({ hotel }: { hotel: Hotel }) => {
     )
   }
 
+  const handleLike = (e: MouseEvent<HTMLImageElement>) => {
+    e.preventDefault()
+    //이미지 위해 하트가 있기 때문에 링크 이동되서 기본이벤트 죽이고 원하는 이벤트 실행
+    onLike({
+      hotel: {
+        name: hotel.name,
+        mainImageUrl: hotel.mainImageUrl,
+        id: hotel.id,
+      },
+    })
+  }
+
   return (
     <div>
       <Link to={`/hotel/${hotel.id}`}>
@@ -92,7 +116,21 @@ const HotelItem = ({ hotel }: { hotel: Hotel }) => {
             </Flex>
           }
           right={
-            <Flex direction="column" align="flex-end">
+            <Flex
+              direction="column"
+              align="flex-end"
+              style={{ position: 'relative' }}
+            >
+              <img
+                src={
+                  isLike
+                    ? 'https://cdn4.iconfinder.com/data/icons/twitter-29/512/166_Heart_Love_Like_Twitter-64.png'
+                    : 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-heart-outline-64.png'
+                }
+                alt=""
+                css={iconHeartStyles}
+                onClick={handleLike}
+              />
               <img src={hotel.mainImageUrl} alt="" css={imageStyles} />
               <Spacing size={8} />
               <Text bold={true}>{addDelimiter(hotel.price)}원</Text>
@@ -117,6 +155,14 @@ const imageStyles = css`
   border-radius: 8px;
   object-fit: cover; //이미지 확대하여 비율은 고정된 크기로 남는 부분 크기에 맞게 잘림
   margin-left: 16px;
+`
+
+const iconHeartStyles = css`
+  position: absolute; //누구 위에 띄울껀지 기준이 있어야 함
+  top: 4px;
+  right: 4px;
+  width: 30px;
+  height: 30px;
 `
 
 export default HotelItem
