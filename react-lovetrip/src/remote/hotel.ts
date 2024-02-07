@@ -15,6 +15,7 @@ import { COLLECTIONS } from '@constants'
 import { Hotel } from '@models/hotel'
 
 import { store } from './firebase'
+import { Room } from '@/models/room'
 
 export const getHotels = async (pageParams?: QuerySnapshot<Hotel>) => {
   //인피니티 스크롤 예정. pageParams = 커서를 받음
@@ -73,4 +74,22 @@ export const getRecommendHotels = async (hotelIds: string[]) => {
         ...doc.data(),
       }) as Hotel,
   )
+}
+
+export const getHotelWithRoom = async ({
+  hotelId,
+  roomId,
+}: {
+  hotelId: string
+  roomId: string
+}) => {
+  const hotelSanpshot = await getDoc(doc(store, COLLECTIONS.HOTEL, hotelId))
+  const roomSanpshot = await getDoc(
+    doc(hotelSanpshot.ref, COLLECTIONS.ROOM, roomId),
+  )
+
+  return {
+    hotel: hotelSanpshot.data() as Hotel,
+    room: roomSanpshot.data() as Room,
+  }
 }
