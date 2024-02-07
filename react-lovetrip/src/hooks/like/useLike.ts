@@ -6,7 +6,7 @@ import useUser from '@hooks/auth/useUser'
 import { Hotel } from '@models/hotel'
 import { useAlertContext } from '@contexts/AlertContext'
 
-function useLike() {
+const useLike = () => {
   const user = useUser()
   const { open } = useAlertContext()
   const navigate = useNavigate()
