@@ -4,6 +4,7 @@ import Contents from '@/components/hotel/Contents'
 import useHotel from '@/components/hotel/hook/useHotel'
 import Map from '@/components/hotel/Map'
 import RecommendHotels from '@/components/hotel/RecommendHotels'
+import Review from '@/components/hotel/Review'
 import Rooms from '@/components/hotel/Rooms'
 import Top from '@/components/shared/Top'
 import { useParams } from 'react-router-dom'
@@ -29,6 +30,7 @@ const HotelPage = () => {
       <Contents contents={contents} />
       <Map location={location} />
       <RecommendHotels recommendHotels={recommendHotels} />
+      <Review hotelId={id} />
     </div>
   )
 }
