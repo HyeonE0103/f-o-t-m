@@ -12,8 +12,6 @@ function AuthGuard({ children }: { children: React.ReactNode }) {
   const setUser = useSetRecoilState(userAtom)
 
   onAuthStateChanged(auth, (user) => {
-    console.log('user', user)
-
     if (user == null) {
       //로그인하지 않았다면 전역유저정보를 null로 변경
       setUser(null)
