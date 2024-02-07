@@ -114,6 +114,7 @@ export const toggleLike = async ({
 }
 
 export function updateOrder(likes: Like[]) {
+  //업데이트할 like 배열을 가지고와 한번에 DB 배치 업데이트
   const batch = writeBatch(store)
 
   likes.forEach((like) => {

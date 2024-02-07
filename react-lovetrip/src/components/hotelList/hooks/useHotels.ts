@@ -25,8 +25,8 @@ const useHotels = () => {
 
   const hotels = data?.pages.map(({ items }) => items).flat()
   //데이터를 실제로 쓰기 위해서 flat하게 펼쳐서 평준하게 만듬
+  //[{{},{},{}},{{},{},{}}] -> [{},{},{}]로 page로 나눠진것을 평평하게
 
-  console.log('data', data, 'hotels', hotels)
   return { data: hotels, loadMore, isFetching, hasNextPage }
 }
 

@@ -33,6 +33,7 @@ function useRooms({ hotelId }: { hotelId: string }) {
 
     return () => {
       unsubscribe() //언마운트되면 이벤트 끊어주기
+      //onSnapshot에 리턴함수가 Unsubscribe()임
     }
   }, [hotelId, client])
 
