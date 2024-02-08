@@ -7,8 +7,11 @@ import Top from '@shared/Top'
 import Spacing from '@shared/Spacing'
 import HotelItem from '@/components/hotelList/HotelItem'
 import useLike from '@/hooks/like/useLike'
+import withSusepnse from '@shared/hocs/withSusepnse'
 
 function HotelListPage() {
+  //밑에서 HOC에서 로딩을 맡고 있기 때문에 HotelListPage는 로딩에 대한것은 신경쓰지
+  //않아도 됨. HotelListPage 그려졌다는 것은 데이터가 불러와졌다는 소리
   const { data: hotels, hasNextPage, loadMore } = useHotels()
   const { data: likes, mutate: like } = useLike()
 
@@ -49,4 +52,7 @@ function HotelListPage() {
   )
 }
 
-export default HotelListPage
+export default withSusepnse(HotelListPage, {
+  fallback: <div>호텔 레스트 불러오는 중</div>,
+})
+//여기서 로딩을 처리하고 있고 로딩중에는 fallback에 들어있는 컴포넌트를 보여줌

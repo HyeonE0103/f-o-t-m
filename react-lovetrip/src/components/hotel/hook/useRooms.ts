@@ -37,7 +37,9 @@ function useRooms({ hotelId }: { hotelId: string }) {
     }
   }, [hotelId, client])
 
-  return useQuery(['rooms', hotelId], () => getRooms(hotelId))
+  return useQuery(['rooms', hotelId], () => getRooms(hotelId), {
+    suspense: true,
+  })
   //호텔별로 룸정보가 캐싱
 }
 

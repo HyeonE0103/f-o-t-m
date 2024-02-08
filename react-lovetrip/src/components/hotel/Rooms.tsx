@@ -15,6 +15,7 @@ import Spacing from '@shared/Spacing'
 import Tag from '@shared/Tag'
 import Button from '@shared/Button'
 import addDelimiter from '@/utils/addDelimiter'
+import withSusepnse from '../shared/hocs/withSusepnse'
 
 const Rooms = ({ hotelId }: { hotelId: string }) => {
   const { data } = useRooms({ hotelId })
@@ -123,4 +124,4 @@ const imageStyles = css`
   border-radius: 4px;
 `
 
-export default Rooms
+export default withSusepnse(Rooms, { fallback: <div>룸 불러오는중...</div> })

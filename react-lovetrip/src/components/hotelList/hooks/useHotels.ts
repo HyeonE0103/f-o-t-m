@@ -13,6 +13,7 @@ const useHotels = () => {
     getNextPageParam: (snapshot) => {
       return snapshot.lastVisible
     }, //첫번째 인자: 키값, 두번째 인자: 패치함수, 세번째 인자: 다음 pageParam을 어떻게 만들어줄지
+    suspense: true, //데이터가 불러올때는 suspense방출
   })
 
   const loadMore = useCallback(() => {
