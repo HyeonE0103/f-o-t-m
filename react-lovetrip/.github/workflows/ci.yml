@@ -1,0 +1,36 @@
+name: CI
+# workflow의 이름
+
+on: [pull_request]
+# pull_request 생성됬을때 발동
+
+jobs:
+  # lint와 build 작업을 거쳐서 코드를 검사
+  lint:
+    name: Lint
+    # job에 이름
+    runs-on: ubuntu-latest
+    # 우분투 환경에서 실행
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      # 실행환경 세팅
+      - run: yarn install
+      - run: yarn lint
+    # 실행환경이 세팅되었을때 yarn install, yarn lint 명령어 실행
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: yarn install
+      - run: CI='false' yarn build
+      # CI가 true일때 build중에 발생하는 경고를 가끔 오류로 취급해서 build가
+      # 실패하는 경우가 있음 CI='false'로 주어 경고를 오류로 판단하지 않도록 만듬
