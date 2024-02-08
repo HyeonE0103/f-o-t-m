@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   DragDropContext,
   Droppable,
@@ -5,13 +6,31 @@ import {
   DropResult,
   DroppableProps,
 } from 'react-beautiful-dnd'
-import { useEffect, useState } from 'react'
 
 import ListRow from '@shared/ListRow'
 import FixedBottomButton from '@shared/FixedBottomButton'
 import useEditLike from '@components/settings/like/hooks/useEditLike'
+import { Like } from '@/models/like'
+import { Virtuoso } from 'react-virtuoso'
 
-function LikePage() {
+const generateMocks = () => {
+  const mocks = []
+
+  for (let i = 0; i < 1000; i += 1) {
+    mocks.push({
+      id: `${i}`,
+      hotelId: `hotel ${i}`,
+      hotelName: `hotel ${i}`,
+      hotelMainImageUrl: `hotel ${i}`,
+      userId: '',
+      order: i,
+    } as Like)
+  }
+
+  return mocks
+}
+
+const LikePage = () => {
   const { data, isEdit, reorder, save } = useEditLike()
 
   const handleDragEndDrop = (result: DropResult) => {
@@ -27,6 +46,8 @@ function LikePage() {
     reorder(from, to)
   }
 
+  const mocks = generateMocks()
+
   return (
     <div>
       <DragDropContext onDragEnd={handleDragEndDrop}>
@@ -38,31 +59,46 @@ function LikePage() {
               ref={droppableProps.innerRef}
               {...droppableProps.droppableProps}
             >
-              {data?.map((like, index) => {
-                return (
-                  <Draggable key={like.id} draggableId={like.id} index={index}>
-                    {/* key와 draggableId는 동일해야함 */}
-                    {(draggableProps) => (
-                      <li
-                        ref={draggableProps.innerRef}
-                        {...draggableProps.draggableProps}
-                        {...draggableProps.dragHandleProps}
+              <Virtuoso
+                useWindowScroll //가상 스크롤 사용
+                increaseViewportBy={0} //시작점은 맨위
+                itemContent={(index, like) => {
+                  //렌더링할 요소 넣어주기
+                  //첫번째 인자는 index, 두번째 인자는 data가 하나하나 넘어옴
+                  return (
+                    // 최소 높이 잡아주기
+                    <div style={{ minHeight: 1 }}>
+                      <Draggable
+                        key={like.id}
+                        draggableId={like.id}
+                        index={index}
                       >
-                        {/* 이 안쪽에 있는 요소들이 dnd가 가능해짐 */}
-                        <ListRow
-                          as="div" //밖에 li로 감싸주어 div로
-                          contents={
-                            <ListRow.Texts
-                              title={like.order}
-                              subTitle={like.hotelName}
+                        {/* key와 draggableId는 동일해야함 */}
+                        {(draggableProps) => (
+                          <li
+                            ref={draggableProps.innerRef}
+                            {...draggableProps.draggableProps}
+                            {...draggableProps.dragHandleProps}
+                          >
+                            {/* 이 안쪽에 있는 요소들이 dnd가 가능해짐 */}
+                            <ListRow
+                              as="div"
+                              contents={
+                                <ListRow.Texts
+                                  title={like.order}
+                                  subTitle={like.hotelName}
+                                />
+                              }
                             />
-                          }
-                        />
-                      </li>
-                    )}
-                  </Draggable>
-                )
-              })}
+                          </li>
+                        )}
+                      </Draggable>
+                    </div>
+                  )
+                }}
+                data={mocks}
+                //Test - data대신 mocks 데이터 사용
+              />
             </ul>
           )}
         </StrictModeDroppable>
