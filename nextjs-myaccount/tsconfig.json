@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "baseUrl": ".", //파일의 위치를 기준으로
+    "paths": {
+      "@/*": ["src/*"], //절대 경로 지정
+      "@components/*": ["src/components/*"],
+      "@shared/*": ["src/components/shared/*"],
+      "@styles/*": ["src/styles/*"],
+      "@pages/*": ["src/pages/*"],
+      "@remote/*": ["src/remote/*"],
+      "@constants": ["src/constants/index"],
+      "@constants/*": ["src/constants/*"],
+      "@models/*": ["src/models/*"]
+    },
+    "jsxImportSource": "@emotion/react" //추가코드
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
