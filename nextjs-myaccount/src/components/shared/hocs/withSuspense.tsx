@@ -2,7 +2,7 @@ import { Suspense, ComponentType, ReactNode } from 'react'
 
 //widthSusepnse(<App/>, {fallback: <로딩컴포넌트/>})
 //App에서는 데이터를 부를때 로딩에 대한 처리를 신경쓰지 않아됨
-function withSusepnse<Props = Record<string, never>>(
+function withSuspense<Props = Record<string, never>>(
   WrappedComponent: ComponentType<Props>,
   // 컴포넌트인데 props를 넣어줌
   options: { fallback: ReactNode },
@@ -20,4 +20,4 @@ function withSusepnse<Props = Record<string, never>>(
 // withSusepnse는 HOC로 해당 컴포넌트들을 suspense로 감싸고 fallback을
 // 받아서 로딩에 대한 처리를 선언적으로 할 수 있게 도와줌
 
-export default withSusepnse
+export default withSuspense
