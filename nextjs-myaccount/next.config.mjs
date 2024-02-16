@@ -2,7 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn1.iconfinder.com', 'cdn4.iconfinder.com', 'localhost'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.iconfinder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.googleusercontent.com',
+      },
+    ],
   },
 }
 
