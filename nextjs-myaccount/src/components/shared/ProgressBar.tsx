@@ -15,7 +15,7 @@ const Container = styled.div(() => ({
   //바뒤에 있는 회색 배경
   width: '100%',
   height: 10,
-  backgroundColor: colors.gray,
+  backgroundColor: colors.gray100,
   overflow: 'hidden', //파랑색 바가 넘쳤을때는 짤라버림 안보이게
   borderRadius: 6,
 }))
