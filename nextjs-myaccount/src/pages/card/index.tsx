@@ -83,8 +83,6 @@ function CardListPage() {
 
 export async function getServerSideProps() {
   //서버에서 실행이 되는 단계(getServerSideProps -> app -> Component의 pageProps로 내려가도록)
-  console.log('getServerSideProps')
-
   const client = new QueryClient()
 
   await client.prefetchInfiniteQuery(['cards'], () => getCards())
