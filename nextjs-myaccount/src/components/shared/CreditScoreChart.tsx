@@ -59,7 +59,8 @@ function CreditScoreChart({
         ></path>
       </svg>
       <Text bold={true} css={textStyles} typography="t6">
-        {addDelimiter(score)}
+        {score === 0 ? '???' : addDelimiter(score)}
+        {/* score가 0이라면 해당 신용점수가 없는 것 즉 조회하지 않은 것이기 때문에 ?로 보여줌 */}
       </Text>
     </Container>
   )
