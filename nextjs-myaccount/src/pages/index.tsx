@@ -1,9 +1,15 @@
+import { GetServerSidePropsContext } from 'next'
 import dynamic from 'next/dynamic'
-import Account from '@/components/home/Account'
-import { BannerSkeleton } from '@/components/home/EventBanners'
-import { CreditScoreSkeleton } from '@/components/home/CreditScore'
-import Spacing from '@/components/shared/Spacing'
-import { CardListSkeleton } from '@/components/home/CardList'
+import { getSession } from 'next-auth/react'
+import { QueryClient, dehydrate } from 'react-query'
+
+import Account from '@components/home/Account'
+import { BannerSkeleton } from '@components/home/EventBanners'
+import { CreditScoreSkeleton } from '@components/home/CreditScore'
+import Spacing from '@shared/Spacing'
+import { CardListSkeleton } from '@components/home/CardList'
+import { User } from '@models/user'
+import { getAccount } from '@remote/account'
 
 const EventBanners = dynamic(() => import('@/components/home/EventBanners'), {
   ssr: false,
@@ -32,4 +38,26 @@ export default function Home() {
       <CardList />
     </>
   )
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession(context)
+
+  if (session != null && session.user != null) {
+    const client = new QueryClient()
+
+    await client.prefetchQuery(['account', (session.user as User).id], () =>
+      getAccount((session.user as User).id),
+    )
+
+    return {
+      props: {
+        dehydratedState: JSON.parse(JSON.stringify(dehydrate(client))),
+      },
+    }
+  }
+
+  return {
+    props: {},
+  }
 }
