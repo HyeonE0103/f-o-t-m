@@ -1,11 +1,15 @@
 import { signOut } from 'next-auth/react'
-import withAuth from '@/hooks/withAuth'
+import { useRouter } from 'next/router'
+import withAuth from '@hooks/withAuth'
 
 import Spacing from '@shared/Spacing'
 import Flex from '@shared/Flex'
 import Button from '@shared/Button'
+import ListRow from '@shared/ListRow'
 
 function MyPage() {
+  const navigate = useRouter()
+
   return (
     <div>
       <Spacing size={100} />
@@ -13,6 +17,21 @@ function MyPage() {
         <Button onClick={() => signOut({ callbackUrl: '/' })}>로그아웃</Button>
         {/* 로그아웃시 '/'로 이동 */}
       </Flex>
+
+      <Spacing
+        size={8}
+        backgroundColor="gray100"
+        style={{ margin: '20px 0' }}
+      />
+      <ul>
+        <ListRow
+          contents={<ListRow.Texts title="약관" subTitle="약관목록 및 철회" />}
+          withArrow={true}
+          onClick={() => {
+            navigate.push('/settings/terms')
+          }}
+        />
+      </ul>
     </div>
   )
 }

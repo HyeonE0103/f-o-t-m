@@ -62,3 +62,11 @@ export function updateAccountBalance(userId: string, balance: number) {
 
   return updateDoc(snapshot, { balance })
 }
+
+// termIds = [1, 2, 3] => [1, 3]
+export function updateTerms(userId: string, termIds: string[]) {
+  const snapshot = doc(collection(store, COLLECTIONS.TERMS), userId)
+
+  return updateDoc(snapshot, { termIds })
+  //찾은 문서를 바탕으로 업데이트 되기 원하는 데이터를 업데이트
+}
