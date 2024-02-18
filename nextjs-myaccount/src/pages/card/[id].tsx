@@ -11,6 +11,7 @@ import Top from '@shared/Top'
 import ListRow from '@shared/ListRow'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
+import SEO from '@shared/SEO'
 
 const FixedBottomButton = dynamic(() => import('@shared/FixedBottomButton'), {
   ssr: false,
@@ -44,15 +45,19 @@ function CardDetailPage({ initialCard }: CardDetailPageProps) {
   }
 
   const { name, corpName, promotion, tags, benefit } = data
-  console.log('tags', tags, 'promotion', promotion)
   const subTitle =
     promotion != null ? removeHtmlTags(promotion.title) : tags.join(',')
   //promotion이 있다면 불필요한 태그들을 지워서 보여주고
   //promotion이 없다면 tags를 쉼표로 묶어서 보여줌
   return (
     <div>
-      <Top title={`${corpName} ${name}`} subTitle={subTitle} />
+      <SEO
+        title={`${corpName} ${name}`}
+        description={subTitle}
+        image="https://image.tving.com/ntgs/contents/CTC/caip/CAIP1500/ko/20210813/P001501766.jpg/dims/resize/1280"
+      />
 
+      <Top title={`${corpName} ${name}`} subTitle={subTitle} />
       <ul>
         {benefit.map((text, index) => (
           <motion.li
