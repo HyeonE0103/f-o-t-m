@@ -9,6 +9,7 @@ import Text from '@shared/Text'
 import Skeleton from '@shared/Skeleton'
 
 import useEventBanners from './hooks/useEventBanners'
+import ErrorBoundary from '@shared/ErrorBoundary'
 
 function EventBanners() {
   const { data } = useEventBanners()
@@ -51,6 +52,14 @@ const bannerStyles = css`
   padding: 24px;
   border-radius: 8px;
 `
+function WrapErrorBoundary() {
+  return (
+    <ErrorBoundary fallbackComponent={<></>}>
+      {/* EventBanners컴포넌트에서 발생된 에러는 ErrorBoundary로 흘러가게 됨 */}
+      <EventBanners />
+    </ErrorBoundary>
+  )
+}
 
 export function BannerSkeleton() {
   return (
@@ -60,6 +69,6 @@ export function BannerSkeleton() {
   )
 }
 
-export default withSusepnse(EventBanners, {
+export default withSusepnse(WrapErrorBoundary, {
   fallback: <BannerSkeleton />,
 })
