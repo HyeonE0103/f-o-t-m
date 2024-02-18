@@ -20,7 +20,6 @@ function useCreditCheck({ onSuccess, onError, enabled }: useCreditCheckProps) {
     staleTime: 0,
     //폴링인께 캐시는 하지 않음
     onSuccess: (status) => {
-      console.log('status', status)
       // 조회성공 !
       if (status === CHECK_STATUS.COMPLETE) {
         onSuccess(getCreditScore(200, 1000))

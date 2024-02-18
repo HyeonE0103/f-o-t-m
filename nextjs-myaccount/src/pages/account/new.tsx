@@ -14,7 +14,11 @@ import FullPageLoader from '@shared/FullPageLoader'
 import FixedBottomButton from '@shared/FixedBottomButton'
 import withAuth from '@hooks/withAuth'
 
-const LAST_STEP = 2
+// STEP 0 = 약관동의
+// STEP 1 = 계좌 개설 폼 페이지
+// STEP 2 = 완료페이지
+const LAST_STEP = 2 // 완료페이지
+
 function AccountNew({ initialStep }: { initialStep: number }) {
   const [step, setStep] = useState(initialStep)
   const user = useUser()
