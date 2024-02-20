@@ -1,0 +1,20 @@
+*.DS_Store
+*.log
+*.tsbuildinfo
+
+# yarn과 yarn berry - npm module
+.pnp.*
+.yarn/install-state.gz
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+**/packge-lock.json
+**/node_modules/
+
+# build 결과물
+**/dist/* 
+# **은 와일드 카드, 이 프로젝트 내에 있는 어떤 dist 폴더든간에 ignore 처리
+dist
+# 루트 path에 있는 dist 폴더를 ignore 처리
