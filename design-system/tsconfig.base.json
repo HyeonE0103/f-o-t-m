@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "declaration": true,
+    //tsconfig에서 제공해주지 않아 타입스크립트 라이브러리를 만들기 위해
+    //타입 선언을 하려면 tsc를 통해서 빌드를 해야함
+    "strict": true,
+    "moduleResolution": "node",
+    "jsx": "react-jsx"
+  }
+}
