@@ -1,0 +1,27 @@
+{
+  "name": "@hyeon/storybook",
+  "packageManager": "yarn@4.1.0",
+  "devDependencies": {
+    "@hyeon/react-components-button": "workspace:^",
+    "@hyeon/react-components-layout": "workspace:^",
+    "@hyeon/themes": "workspace:^",
+    "@storybook/addon-essentials": "^7.6.17",
+    "@storybook/addon-interactions": "^7.6.17",
+    "@storybook/addon-links": "^7.6.17",
+    "@storybook/addon-onboarding": "1.0.11",
+    "@storybook/blocks": "^7.6.17",
+    "@storybook/react": "^7.6.17",
+    "@storybook/react-vite": "^7.6.17",
+    "@storybook/test": "^7.6.17",
+    "prop-types": "15.8.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "storybook": "^7.6.17",
+    "storybook-addon-root-attributes": "^2.1.3",
+    "vite": "^5.1.4"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build": "storybook build"
+  }
+}
